@@ -44,42 +44,46 @@ impl Solution {
                 }   
             }
         }
-        let mut carry = 0;
-        let mut list1 = l1?;
-        let mut list2 = l2?;
-        let mut sum = list1.val+list2.val;
-        // println!("{:#?}",list1);
-        let mut remainder = sum % 10;
-        carry = (sum-remainder)/10;
-        let mut l3 = ListNode::new(remainder);
-        loop {
-            // println!("{:#?}",l3);
-            // println!("{:#?}",list1);
-            // println!("{:#?}",list2);
-            if let Some(val1) = list1.pop(){
-                if let Some(val2) = list2.pop(){
-                    sum = val1+val2+carry;
-                    remainder = sum % 10;
-                    carry = (sum-remainder)/10;
-                    l3.add(remainder);
-                }else{
-                sum = val1+carry;
-                remainder = sum % 10;
+        match (l1, l2) {
+            (None, None) => None,
+            (Some(n), None) | (None, Some(n)) => Some(n), 
+            (Some(ref mut list1), Some(ref mut list2)) => {
+                let mut carry = 0;
+                let mut sum = list1.val+list2.val;
+                // println!("{:#?}",list1);
+                let mut remainder = sum % 10;
                 carry = (sum-remainder)/10;
-                l3.add(remainder);
-                }
-            }else if let Some(val2) = list2.pop(){
-                sum = val2+carry;
-                remainder = sum % 10;
-                carry = (sum-remainder)/10;
-                l3.add(remainder);
-            }else{
-                if carry != 0{
-                    l3.add(carry)
-                }
-                break
+                let mut l3 = ListNode::new(remainder);
+                loop {
+                    // println!("{:#?}",l3);
+                    // println!("{:#?}",list1);
+                    // println!("{:#?}",list2);
+                    if let Some(val1) = list1.pop(){
+                        if let Some(val2) = list2.pop(){
+                            sum = val1+val2+carry;
+                            remainder = sum % 10;
+                            carry = (sum-remainder)/10;
+                            l3.add(remainder);
+                        }else{
+                        sum = val1+carry;
+                        remainder = sum % 10;
+                        carry = (sum-remainder)/10;
+                        l3.add(remainder);
+                        }
+                    }else if let Some(val2) = list2.pop(){
+                        sum = val2+carry;
+                        remainder = sum % 10;
+                        carry = (sum-remainder)/10;
+                        l3.add(remainder);
+                    }else{
+                        if carry != 0{
+                            l3.add(carry)
+                        }
+                        break
+                    }
+                }        
+                return Some(Box::new(l3))
             }
-        }        
-        return Some(Box::new(l3))
+        }
     }
 }
