@@ -24,9 +24,8 @@ impl Solution {
                 // println!("{:#?}",list1);
                 // println!("{:#?}",list2);
                 if sum >= 10 {
-                    let remainder = sum % 10;
-                    let carry = (sum-remainder)/10;
-                    let list3 = Some(Box::new(ListNode::new(carry)));
+                    let remainder = sum - 10;
+                    let list3 = Some(Box::new(ListNode::new(1)));
                     Some(Box::new(ListNode{
                         val: remainder,
                         next: Solution::add_two_numbers(Solution::add_two_numbers(list3,list1.next),list2.next),
