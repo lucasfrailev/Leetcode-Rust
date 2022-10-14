@@ -22,10 +22,9 @@ impl Solution {
             (Some(list1), Some(list2)) => {
                 let sum = list1.val+list2.val;
                 // println!("{:#?}",list1);
-                // println!("{:#?}",list2);
                 if sum >= 10 {
                     let remainder = sum - 10;
-                    let list3 = Some(Box::new(ListNode::new(1)));
+                    let list3 = Some(Box::new(ListNode::new(1))); 
                     Some(Box::new(ListNode{
                         val: remainder,
                         next: Solution::add_two_numbers(Solution::add_two_numbers(list3,list1.next),list2.next),
