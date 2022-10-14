@@ -21,7 +21,6 @@ impl Solution {
             (Some(n), None) | (None, Some(n)) => Some(n), 
             (Some(list1), Some(list2)) => {
                 let sum = list1.val+list2.val;
-
                 if sum >= 10 {
                     let remainder = sum - 10;
                     let list3 = Some(Box::new(ListNode::new(1))); 
