@@ -7,7 +7,6 @@ impl Solution {
         let n = n1.len();
         let m = n2.len();
         let mut digits = vec![];
-        
         let mut i = 0;
         let mut j = 0;
         let mut sum = 0;
