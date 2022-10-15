@@ -11,7 +11,8 @@ impl Solution {
                                             return Solution::add_strings(Solution::add_strings(carry,num1),num2)+&remainder.to_string()
                                         }else{
                                             return Solution::add_strings(num1,num2) + &sum.to_string()
-                                }},
+                                            }
+                                    },
                             (_,_)=> return "r".to_string()}},
                         (Some(n1char),_)=> return num1+&(n1char.to_string()),
                         (_,Some(n2char))=> return num2+&(n2char.to_string()),
