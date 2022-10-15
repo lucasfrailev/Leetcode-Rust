@@ -15,6 +15,6 @@ impl Solution {
                             (_,_)=> return "r".to_string()}},
                         (Some(n1char),_)=> return num1+&(n1char.to_string()),
                         (_,Some(n2char))=> return num2+&(n2char.to_string()),
-                        (_,_)=> return std::string::String::new(),};         
+                        (_,_)=> return std::string::String::new(),}         
                     }
                 }
