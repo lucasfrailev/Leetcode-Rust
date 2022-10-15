@@ -35,6 +35,7 @@ impl Solution {
             if q == 0 && i == n{
                 cont = false;
             }
+            
         }
         if carry{
             num2.push(1);
