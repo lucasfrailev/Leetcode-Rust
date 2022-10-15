@@ -1,9 +1,5 @@
 impl Solution {
     pub fn add_strings(mut num1: String, mut num2: String) -> String {
-        match (&num1,&num2){
-            (cmp,_) if cmp == "0"  => num2,
-            (_ , cmp) if cmp == "0" => num1,
-            (_,_) =>{
                 match (num1.pop(),num2.pop()){
                     (Some(n1char),Some(n2char))=>{
                         match (char::to_digit(n1char,10),char::to_digit(n2char,10)){
@@ -20,7 +16,5 @@ impl Solution {
                         (Some(n1char),_)=> return num1+&(n1char.to_string()),
                         (_,Some(n2char))=> return num2+&(n2char.to_string()),
                         (_,_)=> return std::string::String::new(),};         
-                    },
+                    }
                 }
-            }
-        }
