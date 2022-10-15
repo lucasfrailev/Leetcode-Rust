@@ -1,10 +1,8 @@
 impl Solution {
     pub fn add_strings(mut num1: String, mut num2: String) -> String {
-        let zero = "0".to_string();
-        
         match (&num1,&num2){
-            (cmp,_) if cmp == &zero  => { println!("{:#?}",zero); num2},
-            (_ , cmp) if cmp == &zero => num1,
+            (cmp,_) if cmp == "0"  => num2,
+            (_ , cmp) if cmp == "0" => num1,
             (_,_) =>{
                 match (num1.pop(),num2.pop()){
                     (Some(n1char),Some(n2char))=>{
