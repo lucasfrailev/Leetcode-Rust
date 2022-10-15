@@ -1,21 +1,49 @@
 impl Solution {
     pub fn add_strings(mut num1: String, mut num2: String) -> String {
-                match (num1.pop(),num2.pop()){
-                    (Some(n1char),Some(n2char))=>{
-                        match (char::to_digit(n1char,10),char::to_digit(n2char,10)){
-                            (Some(n1),Some(n2))=>{
-                                    let sum = n1+n2;
-                                    if sum>=10{
-                                            let remainder= (sum - 10) as i32;
-                                            let carry = "1".to_string();
-                                            return Solution::add_strings(Solution::add_strings(carry,num1),num2)+&remainder.to_string()
-                                        }else{
-                                            return Solution::add_strings(num1,num2) + &sum.to_string()
-                                            }
-                                    },
-                            (_,_)=> return "r".to_string()}},
-                        (Some(n1char),_)=> return num1+&(n1char.to_string()),
-                        (_,Some(n2char))=> return num2+&(n2char.to_string()),
-                        (_,_)=> return std::string::String::new(),}         
-                    }
+        let mut n1 = num1.into_bytes();
+        let mut n2 = num2.into_bytes();
+        n1.reverse();
+        n2.reverse();
+        let n = n1.len();
+        let m = n2.len();
+        let mut digits = vec![];
+        
+        let mut i = 0;
+        let mut j = 0;
+        let mut sum = 0;
+        let mut carry = false;
+        loop{
+            if n> i || m>j {
+                if n>i{
+                    sum += n1[i]-b'0';
+                    i+=1;
                 }
+                if m>j{
+                    sum += n2[j]-b'0';
+                    j+=1;
+                }
+                if sum < 10 && carry{
+                    carry = false;
+                }
+                if sum >= 10{
+                    carry = true;
+                    sum -= 10;
+                }
+                digits.push(sum+b'0');
+                if carry {
+                    sum = 1;
+                }else{
+                    sum = 0;
+                }
+            }else{
+                if carry {
+                    digits.push(b'1');
+                    carry = false;
+                }
+                break
+            }
+        }
+        digits.reverse();
+        return String::from_utf8(digits).unwrap()        
+    }
+}
