@@ -12,6 +12,7 @@ impl Solution {
         value_map.insert('M',1000);
         
         let char_vec: Vec<char> = s.chars().collect();
+        
         let mut sum = 0;
         
         for (i, c) in char_vec.iter().enumerate(){
