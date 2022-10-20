@@ -28,6 +28,8 @@ impl Solution {
                 sum +=value_map.get(&c).unwrap();
             }
         }
+        
         return sum
+        
     }
 }
