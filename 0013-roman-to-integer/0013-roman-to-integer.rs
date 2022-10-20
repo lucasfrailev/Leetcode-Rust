@@ -2,6 +2,7 @@ impl Solution {
     pub fn roman_to_int(s: String) -> i32 {
         use std::collections::HashMap;
         let mut value_map: HashMap<char, i32> = HashMap::with_capacity(7);
+        
         value_map.insert('I',1);
         value_map.insert('V',5);
         value_map.insert('X',10);
